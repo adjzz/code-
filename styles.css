@@ -570,6 +570,10 @@ footer p {
 }
 
 @media (max-width: 900px) {
+  .site-header {
+    padding-top: 18px;
+  }
+
   .orbit-shell {
     width: min(92vw, 660px);
     height: 450px;
@@ -589,6 +593,15 @@ footer p {
 }
 
 @media (max-width: 640px) {
+  .site-header {
+    padding-top: 16px;
+  }
+
+  .brand {
+    margin-bottom: 12px;
+    font-size: clamp(1.2rem, 4vw, 1.7rem);
+  }
+
   .orbit-shell {
     width: min(96vw, 500px);
     height: 390px;
@@ -608,23 +621,125 @@ footer p {
 }
 
 @media (max-width: 480px) {
+  .site-header {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .brand {
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+  }
+
   .orbit-shell {
-    height: 340px;
+    width: min(100vw, 360px);
+    height: 320px;
+  }
+
+  .cat-core {
+    width: clamp(170px, 52vw, 220px);
+    height: clamp(120px, 33vw, 150px);
+  }
+
+  .cat-device {
+    width: clamp(120px, 30vw, 170px);
+    height: clamp(85px, 20vw, 115px);
+  }
+
+  .cat-face {
+    font-size: clamp(1.7rem, 8vw, 2.4rem);
   }
 
   .nav-link {
-    width: 78px;
-    height: 36px;
-    padding: 0 12px;
-    font-size: 0.72rem;
+    width: 74px;
+    height: 34px;
+    padding: 0 8px;
+    font-size: 0.66rem;
     letter-spacing: 0.02em;
   }
 
-  .nav-link.home { --x: -92px; --y: -68px; }
-  .nav-link.about { --x: 92px; --y: -68px; }
-  .nav-link.services { --x: -92px; --y: 68px; }
-  .nav-link.contact { --x: 92px; --y: 68px; }
-  .nav-link.projects { --x: 0px; --y: -110px; }
+  .nav-link.home { --x: -70px; --y: -50px; }
+  .nav-link.about { --x: 70px; --y: -50px; }
+  .nav-link.services { --x: -70px; --y: 50px; }
+  .nav-link.contact { --x: 70px; --y: 50px; }
+  .nav-link.projects { --x: 0px; --y: -92px; }
+
+  .modal-overlay {
+    padding: 12px;
+  }
+
+  .modal-panel {
+    width: calc(100vw - 24px);
+    max-width: none;
+    height: auto;
+    min-height: 300px;
+    max-height: calc(100vh - 24px);
+    border-radius: 22px;
+  }
+
+  .modal-content {
+    padding: 46px 14px 18px;
+  }
+
+  .profile-card {
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .profile-icon-button {
+    width: 56px;
+    height: 56px;
+  }
+
+  .profile-details {
+    text-align: center;
+  }
+
+  .modal-content h2 {
+    font-size: clamp(1.5rem, 7vw, 2.2rem);
+  }
+
+  .modal-content p,
+  .modal-text {
+    font-size: 0.94rem;
+  }
+
+  .projects-content {
+    max-width: 100%;
+  }
+
+  .project-header {
+    padding: 14px 14px;
+  }
+
+  .project-header h3 {
+    font-size: 0.96rem;
+  }
+
+  .project-content.open {
+    padding: 14px 14px 16px;
+  }
+
+  .project-content p {
+    font-size: 0.9rem;
+  }
+
+  .project-download-link {
+    width: 100%;
+    max-width: 220px;
+    padding: 10px 14px;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    width: 100%;
+  }
 }
 
 @keyframes fadeUp {
