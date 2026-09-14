@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Website</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <h1 class="brand">Ralf Adjay Estenor</h1>
+
+    <div class="orbit-shell">
+      <div class="cat-core">
+        <div class="cat-device">
+          <div class="cat-screen">
+            <div class="cat-face">🐱</div>
+          </div>
+        </div>
+      </div>
+
+      <nav class="nav-orbit" aria-label="Main navigation">
+        <a href="#" class="nav-link home active" data-page="home">Home</a>
+        <a href="#" class="nav-link about" data-page="about">About</a>
+        <a href="#" class="nav-link services" data-page="services">Services</a>
+        <a href="#" class="nav-link contact" data-page="contact">Contact</a>
+        <a href="#" class="nav-link projects" data-page="projects">Projects</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="modal-overlay" id="homeModal" aria-hidden="true">
+    <div class="modal-panel">
+      <button class="modal-close" type="button" aria-label="Close page">×</button>
+
+      <div class="modal-content">
+        <div class="profile-card" id="profileCard">
+          <button class="profile-icon-button" type="button" aria-label="Change profile picture">
+            <img id="profileImage" class="profile-image" alt="Profile picture" />
+            <span id="profileInitials" class="profile-initials">RA</span>
+          </button>
+          <input type="file" id="profileImageInput" accept="image/*" hidden />
+
+          <div class="profile-details">
+            <p class="eyebrow" id="modalEyebrow">Welcome</p>
+            <h2 id="modalTitle">Home Landing Page</h2>
+          </div>
+        </div>
+
+        <div id="modalText" class="modal-text">
+          This is your home screen modal, built inside the same index.html file.
+          You can use this space for your intro text, call-to-action buttons,
+          and any content you want to show after the navigation animation.
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="primary-btn" id="modalPrimaryBtn">Get Started</button>
+          <button type="button" class="secondary-btn" id="modalSecondaryBtn">Learn More</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 My Website. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const navLinks = document.querySelectorAll('.nav-link');
+    const catCore = document.querySelector('.cat-core');
+    const modal = document.getElementById('homeModal');
+    const closeButton = document.querySelector('.modal-close');
+    const modalEyebrow = document.getElementById('modalEyebrow');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalText = document.getElementById('modalText');
+    const modalPrimaryBtn = document.getElementById('modalPrimaryBtn');
+    const modalSecondaryBtn = document.getElementById('modalSecondaryBtn');
+    const profileCard = document.getElementById('profileCard');
+    const profileImageInput = document.getElementById('profileImageInput');
+    const profileImage = document.getElementById('profileImage');
+    const profileInitials = document.getElementById('profileInitials');
+    const profileIconButton = document.querySelector('.profile-icon-button');
+
+    const pageData = {
+      home: {
+        // eyebrow: 'Welcome',
+        title: 'Ralf Adjay Estenor',
+        text: 'This website was created as a sample and reference project to showcase a creative one-page portfolio layout with animated navigation and modal content. It is designed to help visitors easily explore the different sections of the site, including About, Services, Contact, and Projects, while giving a clear idea of how this concept can be used in a real portfolio or personal website.',
+        primary: 'Explore Projects',
+        secondary: 'Learn More'
+      },
+      about: {
+        eyebrow: 'About',
+        title: 'About Us',
+        text: 'Here you can tell visitors who you are, what your mission is, and why your website or business exists.',
+        primary: 'Our Story',
+        secondary: 'Meet the Team'
+      },
+      services: {
+        eyebrow: 'Services',
+        title: 'What We Offer',
+        text: 'Show your services, packages, capabilities, or solutions here with clear text and helpful call-to-action buttons.',
+        primary: 'View Packages',
+        secondary: 'Book a Call'
+      },
+      contact: {
+        eyebrow: 'Contact',
+        title: 'Let\'s Connect',
+        text: 'Add your contact information, a form, or a message section here to help visitors reach you quickly and easily.',
+        primary: 'Send Message',
+        secondary: 'Call Us'
+      },
+      projects: {
+        eyebrow: 'Projects',
+        title: 'Recent Work',
+        text: 'Use this area to showcase your portfolio, project highlights, design concepts, or recent work samples.',
+        primary: 'View Portfolio',
+        secondary: 'See Case Studies'
+      }
+    };
+
+    const projectsMarkup = `
+      <div class="projects-list">
+        <div class="project-item">
+          <div class="project-header">
+            <h3>Water Billing System v3.0</h3>
+            <span class="toggle-btn">+</span>
+          </div>
+          <div class="project-content">
+            <p>• Improved and enhanced existing web-based billing system used by the Ginatilan LGU Treasurer’s Office.</p>
+            <p>• Refined backend logic and UI using Django & Bootstrap.</p>
+            <p><strong>Tools Used:</strong> Django (Backend), Bootstrap (Frontend), MySQL (Database), Google Drive (Automatic database backups)</p>
+            <p><strong>Roles:</strong> Backend Developer, UI Developer, Maintainer</p>
+            <img src="images/water-billing.JPEG" alt="Water Billing System">
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-header">
+            <h3>ConexusX System</h3>
+            <span class="toggle-btn">+</span>
+          </div>
+          <div class="project-content">
+            <p>• LAN-Based Real-Time Chat and Media Communication System Leveraging WebSockets for Signaling and WebRTC for Peer-to-Peer Streams.</p>
+            <p><strong>Tools Used:</strong> Django (Backend), WebSockets, WebRTC</p>
+            <p><strong>Roles:</strong> Backend and Structure Developer during OJT at Arsene Software Solutions.</p>
+            <img src="images/conexusX-System.jpeg" alt="ConexusX System">
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-header">
+            <h3>Game Web App</h3>
+            <span class="toggle-btn">+</span>
+          </div>
+          <div class="project-content">
+            <p>• Collaborated to build an interactive Deal or No Deal web game for CTU Nite Game Show.</p>
+            <p><strong>Tools Used:</strong> Django (Backend), HTML & CSS (Frontend), System-generated Sound Controller using Django</p>
+            <p><strong>Roles:</strong> Backend/UI Developer, Live Sound & Effects Controller</p>
+            <img src="images/game-web-app.jpg" alt="Game Web App">
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-header">
+            <h3>Real-Time Mobile-to-IoT Display</h3>
+            <span class="toggle-btn">+</span>
+          </div>
+          <div class="project-content">
+            <p>• Built a real-time mobile app using Flutter with Firebase Realtime Database.</p>
+            <p><strong>Tools Used:</strong> ESP8266, Firebase Realtime Database, Arduino IDE, Flutter (Mobile Application)</p>
+            <p><strong>Roles:</strong> Constructed and configured IoT hardware for seamless live updates.</p>
+            <img src="images/real-time-iot.JPEG" alt="IoT Project">
+          </div>
+
+        </div>
+                <div class="project-item">
+          <div class="project-header">
+            <h3>adjz net OS</h3>
+            <span class="toggle-btn">+</span>
+          </div>
+          <div class="project-content">
+            <a
+              class="project-download-link"
+              href="https://drive.google.com/drive/folders/1NIQj-ITagF_GF7wP1N31SWIGduCkOulo?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open Project
+            </a>
+          </div>
+        </div>
+
+      </div>
+    `;
+
+    function showModal(pageKey) {
+      const content = pageData[pageKey] || pageData.home;
+      const isHome = pageKey === 'home';
+
+      profileCard.classList.toggle('hidden', !isHome);
+      modalEyebrow.textContent = content.eyebrow;
+      modalTitle.textContent = content.title;
+
+      if (pageKey === 'projects') {
+        modalText.innerHTML = projectsMarkup;
+        modalText.classList.add('projects-content');
+      } else {
+        modalText.textContent = content.text;
+        modalText.classList.remove('projects-content');
+      }
+
+      modalPrimaryBtn.textContent = content.primary;
+      modalSecondaryBtn.textContent = content.secondary;
+      modal.classList.add('visible');
+      modal.setAttribute('aria-hidden', 'false');
+
+      if (pageKey === 'projects') {
+        const projectHeaders = document.querySelectorAll('.project-header');
+
+        projectHeaders.forEach((header) => {
+          header.addEventListener('click', () => {
+            const item = header.closest('.project-item');
+            const contentBlock = item.querySelector('.project-content');
+            const toggleButton = header.querySelector('.toggle-btn');
+
+            const isOpen = contentBlock.classList.contains('open');
+
+            document.querySelectorAll('.project-content').forEach((panel) => {
+              panel.classList.remove('open');
+            });
+
+            document.querySelectorAll('.toggle-btn').forEach((button) => {
+              button.textContent = '+';
+            });
+
+            if (!isOpen) {
+              contentBlock.classList.add('open');
+              toggleButton.textContent = '−';
+            }
+          });
+        });
+      }
+    }
+
+    function hideModal() {
+      modal.classList.remove('visible');
+      modal.setAttribute('aria-hidden', 'true');
+      navLinks.forEach((item) => item.classList.remove('active'));
+    }
+
+    function triggerCatAnimation() {
+      catCore.classList.remove('is-reacting');
+      void catCore.offsetWidth;
+      catCore.classList.add('is-reacting');
+      setTimeout(() => catCore.classList.remove('is-reacting'), 700);
+    }
+
+    function updateProfileImage(imageData) {
+      if (imageData) {
+        profileImage.src = imageData;
+        profileImage.classList.add('visible');
+        profileInitials.hidden = true;
+      } else {
+        profileImage.removeAttribute('src');
+        profileImage.classList.remove('visible');
+        profileInitials.hidden = false;
+      }
+    }
+
+    profileIconButton.addEventListener('click', () => {
+      profileImageInput.click();
+    });
+
+    profileImageInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+
+      if (!file) {
+        return;
+      }
+
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        const result = e.target.result;
+        localStorage.setItem('profileImageData', result);
+        updateProfileImage(result);
+      };
+
+      reader.readAsDataURL(file);
+    });
+
+    const savedProfileImage = localStorage.getItem('profileImageData');
+
+    if (savedProfileImage) {
+      updateProfileImage(savedProfileImage);
+    }
+
+    navLinks.forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        navLinks.forEach((item) => item.classList.remove('active'));
+        link.classList.add('active');
+        triggerCatAnimation();
+
+        const pageKey = link.dataset.page;
+
+        if (pageKey) {
+          setTimeout(() => showModal(pageKey), 260);
+        }
+      });
+    });
+
+    closeButton.addEventListener('click', hideModal);
+
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        hideModal();
+      }
+    });
+  </script>
+
+</body>
+</html>
